@@ -18,7 +18,7 @@ class IndexUI:
     if op == "Abrir Conta": AbrirContaUI.main()
 
   def menu_admin():
-    op = st.sidebar.selectbox("Menu", ["Manter Agenda", "Manter Clientes", "Manter Serviços", "Abrir Agenda do Dia", "Reajustar Preço"])
+    op = st.sidebar.selectbox("Menu", ["Manter Agenda", "Manter Clientes", "Manter Serviços", "Abrir Agenda do Dia", "Reajustar Preço", "Editar Perfil"])
     if op == "Manter Agenda": ManterAgendaUI.main()
     if op == "Manter Clientes": ManterClienteUI.main()
     if op == "Manter Serviços": ManterServicoUI.main()
@@ -26,7 +26,7 @@ class IndexUI:
     if op == "Reajustar Preço": ServicoReajusteUI.main()
 
   def menu_cliente():
-    op = st.sidebar.selectbox("Menu", ["Agenda de Hoje"])
+    op = st.sidebar.selectbox("Menu", ["Agenda de Hoje", "Editar Perfil"])
     if op == "Agenda de Hoje": AgendaHojeUI.main()
 
   def btn_logout():
