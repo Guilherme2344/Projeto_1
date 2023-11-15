@@ -24,8 +24,7 @@ class View:
 
   def cliente_admin():
     for cliente in View.cliente_listar():
-      if cliente.get_nome() == "admin": return
-    View.cliente_inserir("admin", "admin", "0000", "admin")  
+      if cliente.get_email() == "admin": return  
 
   def cliente_login(email, senha):
     for cliente in View.cliente_listar():
@@ -87,3 +86,21 @@ class View:
 
   def editar_perfil(id, nome, email, fone, senha):
     NCliente.atualizar(Cliente(id, nome, email, fone, senha))
+
+  def agendar_listar_semana():
+    semana = []
+    hoje = datetime.datetime.today()
+    for horario in View.agenda_listar():
+      if horario.get_data().date() - hoje.date() <= datetime.timedelta(days=7):
+        semana.append(horario)
+    return semana
+    
+  def agendar_horario(id, horario, confirm, nome, servico):
+    NAgenda.inserir(Agenda(id, datetime.datetime.strptime(horario, '%d/%m/%Y %H:%M'), confirm, nome, servico))
+
+  def ver_agendamentos():
+    lista = []
+    for agendamentos in View.agenda_listar(): lista.append(agendamentos)
+  
+  def confirmar_agendamento(id, horario, confirm, nome, servico):
+    NAgenda.atualizar(Agenda(id, horario, confirm, nome, servico))

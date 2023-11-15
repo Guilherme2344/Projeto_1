@@ -31,7 +31,7 @@ class ManterAgendaUI:
     servico = st.selectbox("Selecione o serviço", servicos)
     if st.button("Inserir"):
       data = datetime.datetime.strptime(datastr, "%d/%m/%Y %H:%M")
-      View.agenda_inserir(data, True, cliente.get_id(), servico.get_id())
+      View.agenda_inserir(data, True, cliente.get_nome(), servico.get_descricao())
       st.success("Horário inserido com sucesso")
       time.sleep(2)
       st.rerun()
@@ -57,7 +57,7 @@ class ManterAgendaUI:
         servico = st.selectbox("Selecione o novo serviço", servicos)
       if st.button("Atualizar"):
         data = datetime.datetime.strptime(datastr, "%d/%m/%Y %H:%M")
-        View.agenda_atualizar(op.get_id(), data, op.get_confirmado(), cliente.get_id(), servico.get_id())
+        View.agenda_atualizar(op.get_id(), data, op.get_confirmado(), cliente.get_nome(), servico.get_descricao())
         st.success("Horário atualizado com sucesso")
         time.sleep(2)
         st.rerun()
