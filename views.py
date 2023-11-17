@@ -24,7 +24,8 @@ class View:
 
   def cliente_admin():
     for cliente in View.cliente_listar():
-      if cliente.get_email() == "admin": return  
+      if cliente.get_email() == "admin": return
+    View.inserir(Cliente(0, "admin", "admin", "0000", "admin"))
 
   def cliente_login(email, senha):
     for cliente in View.cliente_listar():
