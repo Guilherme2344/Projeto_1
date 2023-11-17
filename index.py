@@ -8,6 +8,8 @@ from templates.servicoreajusteUI import ServicoReajusteUI
 from templates.abrircontaUI import AbrirContaUI
 from templates.editarperfilUI import EditarPerfilUI
 from templates.agendarhorarioUI import AgendaHorarioUI
+from templates.veragendamentosUI import VerAgendamentosUI
+from templates.confirmaragendamentoUI import ConfirmarAgendamentosUI
 from views import View
 
 import streamlit as st
@@ -20,19 +22,21 @@ class IndexUI:
     if op == "Abrir Conta": AbrirContaUI.main()
 
   def menu_admin():
-    op = st.sidebar.selectbox("Menu", ["Manter Agenda", "Manter Clientes", "Manter Serviços", "Abrir Agenda do Dia", "Reajustar Preço", "Editar Perfil"])
+    op = st.sidebar.selectbox("Menu", ["Manter Agenda", "Manter Clientes", "Manter Serviços", "Abrir Agenda do Dia", "Reajustar Preço", "Editar Perfil", "Confirmar Agendamento"])
     if op == "Manter Agenda": ManterAgendaUI.main()
     if op == "Manter Clientes": ManterClienteUI.main()
     if op == "Manter Serviços": ManterServicoUI.main()
     if op == "Abrir Agenda do Dia": AbrirAgendaUI.main()
     if op == "Reajustar Preço": ServicoReajusteUI.main()
     if op == "Editar Perfil": EditarPerfilUI.main()
+    if op == "Confirmar Agendamento": ConfirmarAgendamentosUI.main()
 
   def menu_cliente():
-    op = st.sidebar.selectbox("Menu", ["Agenda de Hoje", "Editar Perfil", "Agendar Horário"])
+    op = st.sidebar.selectbox("Menu", ["Agenda de Hoje", "Editar Perfil", "Agendar Horário", "Ver Agendamentos"])
     if op == "Agenda de Hoje": AgendaHojeUI.main()
     if op == "Editar Perfil": EditarPerfilUI.main()
     if op == "Agendar Horário": AgendaHorarioUI.main()
+    if op == "Ver Agendamentos": VerAgendamentosUI.main()
 
   def btn_logout():
     if st.sidebar.button("Logout"):

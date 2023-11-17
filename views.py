@@ -81,7 +81,7 @@ class View:
     delta = datetime.timedelta(minutes = intervalo) 
     aux = data_inicio
     while aux <= data_fim :
-      NAgenda.inserir(Agenda(0, aux, False, 0, 0))
+      NAgenda.inserir(Agenda(0, aux, True, 0, 0))
       aux = aux + delta
 
   def editar_perfil(id, nome, email, fone, senha):
@@ -94,13 +94,23 @@ class View:
       if horario.get_data().date() - hoje.date() <= datetime.timedelta(days=7):
         semana.append(horario)
     return semana
+  
+  def nao_confirmado():
+    return NAgenda.listar_nao_confirmados()
     
   def agendar_horario(id, horario, confirm, nome, servico):
-    NAgenda.inserir(Agenda(id, datetime.datetime.strptime(horario, '%d/%m/%Y %H:%M'), confirm, nome, servico))
+    NAgenda.atualizar(Agenda(id, datetime.datetime.strptime(horario, '%d/%m/%Y %H:%M'), confirm, nome, servico))
 
   def ver_agendamentos():
     lista = []
-    for agendamentos in View.agenda_listar(): lista.append(agendamentos)
+    lista_2 = []
+    for agendamentos in View.agenda_listar():
+      if agendamentos in View.nao_confirmado(): 
+        lista.append(agendamentos)
+        return lista
+      else:
+        lista_2.append(agendamentos)
+    return lista_2
   
   def confirmar_agendamento(id, horario, confirm, nome, servico):
     NAgenda.atualizar(Agenda(id, horario, confirm, nome, servico))

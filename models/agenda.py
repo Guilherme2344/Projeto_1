@@ -63,7 +63,7 @@ class NAgenda:
     aux = datetime.datetime.now()
     hoje = datetime.datetime(aux.year, aux.month, aux.day)
     for aux in cls.__agendas:
-      if not aux.__confirmado and aux.__data > hoje:
+      if aux.get_confirmado() == False and aux.get_data() > hoje:
         nao_confirmados.append(aux)
     return nao_confirmados
 

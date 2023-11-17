@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from views import View
+from datetime import datetime
 
 class VerAgendamentosUI:
   def main():
@@ -9,8 +10,10 @@ class VerAgendamentosUI:
   
   def ver():
     lista = []
-    for i in View.ver_agendamentos():
-      if i.get_id() == st.session_state['cliente_id']:
-        lista.append([i.get_data(), i.get_id_servico(), i.get_confirmado()])
-    df = pd.DataFrame(lista, columns=['Data', 'Serviço', 'Confirmado'])
-    st.dataframe(df, hide_index=True)
+    for i in View.nao_confirmado():
+      if i.get_id_cliente() == st.session_state['cliente_nome']:
+        lista.append([datetime.strftime(i.get_data(), '%d/%m/%Y %H:%M'), i.get_id_servico(), i.get_confirmado()])
+    if len(lista) == 0: st.write('Nenhum agendamento solicitado')
+    else:
+      df = pd.DataFrame(lista, columns=['Data', 'Serviço', 'Confirmado'])
+      st.dataframe(df, hide_index=True)
