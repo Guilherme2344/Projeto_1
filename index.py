@@ -6,7 +6,8 @@ from templates.loginUI import LoginUI
 from templates.agendahojeUI import AgendaHojeUI
 from templates.servicoreajusteUI import ServicoReajusteUI
 from templates.abrircontaUI import AbrirContaUI
-from templates.editarperfilUI import EditarPerfilUI
+from templates.editarperfiladminUI import EditarPerfilAdminUI
+from templates.editarperfilclienteUI import EditarPerfilClienteUI
 from templates.agendarhorarioUI import AgendaHorarioUI
 from templates.veragendamentosUI import VerAgendamentosUI
 from templates.confirmaragendamentoUI import ConfirmarAgendamentosUI
@@ -28,13 +29,13 @@ class IndexUI:
     if op == "Manter Serviços": ManterServicoUI.main()
     if op == "Abrir Agenda do Dia": AbrirAgendaUI.main()
     if op == "Reajustar Preço": ServicoReajusteUI.main()
-    if op == "Editar Perfil": EditarPerfilUI.main()
+    if op == "Editar Perfil": EditarPerfilAdminUI.main()
     if op == "Confirmar Agendamento": ConfirmarAgendamentosUI.main()
 
   def menu_cliente():
     op = st.sidebar.selectbox("Menu", ["Agenda de Hoje", "Editar Perfil", "Agendar Horário", "Ver Agendamentos"])
     if op == "Agenda de Hoje": AgendaHojeUI.main()
-    if op == "Editar Perfil": EditarPerfilUI.main()
+    if op == "Editar Perfil": EditarPerfilClienteUI.main()
     if op == "Agendar Horário": AgendaHorarioUI.main()
     if op == "Ver Agendamentos": VerAgendamentosUI.main()
 
