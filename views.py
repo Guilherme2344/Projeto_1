@@ -115,5 +115,9 @@ class View:
         lista_2.append(agendamentos)
     return lista_2
   
-  def confirmar_agendamento(id, horario, confirm, nome, servico):
-    NAgenda.atualizar(Agenda(id, horario, confirm, nome, servico))
+  def confirmar_agendamento(id):
+    agenda = NAgenda.listar_id(id)
+    horario = agenda.get_data()
+    nome = agenda.get_id_cliente()
+    servico = agenda.get_id_servico()
+    NAgenda.atualizar(Agenda(id, horario, True, nome, servico))
